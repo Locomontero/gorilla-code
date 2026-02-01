@@ -111,9 +111,9 @@ export default function App() {
   ];
 
   const stats = [
-    { label: "Projetos Entregues", value: "750+", icon: <Rocket className="w-5 h-5" /> },
-    { label: "Clientes Satisfeitos", value: "185+", icon: <Users className="w-5 h-5" /> },
-    { label: "Uptime Garantido", value: "92.5%", icon: <Shield className="w-5 h-5" /> },
+    { label: "Projetos Entregues", value: "150+", icon: <Rocket className="w-5 h-5" /> },
+    { label: "Clientes Satisfeitos", value: "170+", icon: <Users className="w-5 h-5" /> },
+    { label: "Uptime Garantido", value: "95.5%", icon: <Shield className="w-5 h-5" /> },
     { label: "Anos de Experiência", value: "15+", icon: <Award className="w-5 h-5" /> }
   ];
 
@@ -241,6 +241,18 @@ export default function App() {
                 Ver Portfólio
               </Button>
             </div>
+            {/* Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+              {stats.map((stat, index) => (
+                <div key={index} className="bg-gradient-to-br from-purple-900/30 to-cyan-900/30 backdrop-blur-md border border-purple-500/20 rounded-lg p-4">
+                  <div className="flex items-center justify-center gap-2 mb-2 text-cyan-400">
+                    {stat.icon}
+                  </div>
+                  <div className="text-2xl font-bold text-white">{stat.value}</div>
+                  <div className="text-xs text-gray-400">{stat.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -323,7 +335,7 @@ export default function App() {
             </Badge>
             <h2 className="text-3xl md:text-4xl font-black mb-4">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
-                Empresas Líderes de Mercado
+                Clientes Consolidados no Mercado
               </span>
             </h2>
           </div>
@@ -488,11 +500,20 @@ export default function App() {
             Vamos conversar sobre como podemos transformar suas ideias em realidade digital
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-gradient-to-r from-purple-600 via-fuchsia-600 to-cyan-600 hover:from-purple-700 hover:via-fuchsia-700 hover:to-cyan-700 text-white px-12 py-8 text-xl rounded-full shadow-2xl shadow-purple-500/50 hover:shadow-purple-500/70 transition-all duration-300 font-bold">
-              <Rocket className="w-6 h-6 mr-3" />
-              Agendar Consulta
+            <Button
+              className="bg-gradient-to-r from-purple-600 via-fuchsia-600 to-cyan-600 hover:from-purple-700 hover:via-fuchsia-700 hover:to-cyan-700 text-white px-12 py-8 text-xl rounded-full shadow-2xl shadow-purple-500/50 hover:shadow-purple-500/70 transition-all duration-300 font-bold"
+              onClick={() => window.open(
+                'https://wa.me/5551999020666?text=Olá,%20quero%20agendar%20uma%20consultoria',
+                '_blank'
+              )}
+            >
+              <Rocket className="w-6 h-6 mr-2" />
+              Vamos Codar?
             </Button>
           </div>
+          <p className="mt-6 text-gray-400 text-sm">
+            +170 clientes satisfeitos | Mais de 150 projetos entregues
+          </p>
         </div>
       </div>
 
@@ -515,6 +536,6 @@ export default function App() {
           </div>
         </div>
       </footer>
-    </div>
+    </div >
   );
 }

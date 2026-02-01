@@ -17,7 +17,7 @@ import cielo from "../assets/logos/cielo.png";
 import digitalcala from "../assets/logos/digitalcala.png";
 import embraer from "../assets/logos/embraer.png";
 import metlife from "../assets/logos/metlife.png";
-import aci from "../assets/logos/aci.png";
+import aci from "../assets/logos/aci.jpg";
 
 
 export const clients = [
@@ -137,13 +137,13 @@ export default function App() {
     { icon: <Cloud className="w-5 h-5" />, text: "Cloud Native Architecture" },
     { icon: <TrendingUp className="w-5 h-5" />, text: "Escalabilidade Garantida" }
   ];
-  // Exemplo no topo do App.tsx, antes do return
+
   const portfolioProjects = [
     {
       id: 1,
       title: "App de Jogos Online",
       description: "Landing page moderna com design responsivo e interativo.",
-      image: "src/app/images/casino.png" // coloque suas imagens na pasta public/images
+      image: "src/app/images/casino.png"
     },
     {
       id: 2,
@@ -300,7 +300,7 @@ export default function App() {
                 <form
                   className="space-y-4"
                   onSubmit={async (e) => {
-                    e.preventDefault(); // evita reload da página
+                    e.preventDefault();
                     const form = e.currentTarget;
                     const data = new FormData(form);
 
@@ -312,9 +312,9 @@ export default function App() {
                       });
 
                       if (response.ok) {
-                        setSubmitted(true); // mostra mensagem de obrigado
+                        setSubmitted(true);
                         setTimeout(() => setOpenContact(false), 3000);
-                        form.reset();       // limpa os campos
+                        form.reset();
                       } else {
                         alert("Erro ao enviar a mensagem. Tente novamente.");
                       }
@@ -399,7 +399,6 @@ export default function App() {
             </div>
           </div>
         )}
-
       </div> {/* fim Hero Section */}
 
       {/* Clients Section */}
@@ -412,18 +411,22 @@ export default function App() {
             </Badge>
             <h2 className="text-3xl md:text-4xl font-black mb-4">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
-                Clientes Consolidados no Mercado
+                Empresas Clientes que Prestamos Serviços
               </span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
             {clients.map((client, index) => (
-              <div key={index} className="bg-gradient-to-br from-purple-900/20 to-cyan-900/20 backdrop-blur-sm border border-purple-500/20 rounded-lg p-6 flex flex-col items-center justify-center hover:border-purple-500/50 transition-all duration-300 hover:scale-105">
-                <div className="mb-2 flex items-center justify-center h-12">
-                  <img src={client.logo} className="h-10 mx-auto object-contain grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition" />
-                </div>
-                <p className="text-sm text-gray-300 font-medium text-center">{client.name}</p>
+              <div
+                key={index}
+                className="bg-gray-900 rounded-lg p-4 flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-lg hover:bg-white/10"
+              >
+                <img
+                  src={client.logo}
+                  alt={client.name}
+                  className="w-full h-20 object-contain filter grayscale opacity-50 transition-all duration-300 hover:grayscale-0 hover:opacity-100"
+                />
               </div>
             ))}
           </div>

@@ -31,13 +31,27 @@ export const clients = [
   { name: "Cielo", logo: cielo }
 ];
 
+interface Service {
+  id: number;
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  color: string;
+  features: string[];
+  image?: string;
+}
 
 export default function App() {
 
   const [openPortfolio, setOpenPortfolio] = useState(false)
   const [openContact, setOpenContact] = useState(false);
 
-  const services = [
+  const [submitted, setSubmitted] = useState(false);
+
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
+  const [openServiceModal, setOpenServiceModal] = useState(false);
+
+  const services: Service[] = [
     {
       id: 1,
       title: "Plataformas Bancárias",
@@ -175,7 +189,6 @@ export default function App() {
   }, [openContact, openPortfolio]);
 
 
-
   return (
     <div className="min-h-screen bg-[#0a0a0f] text-white overflow-x-hidden relative">
 
@@ -264,9 +277,15 @@ export default function App() {
         {/* Modal Contato */}
         {openContact && (
           <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto">
-            <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setOpenContact(false)} />
+            <div
+              className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+              onClick={() => setOpenContact(false)}
+            />
             <div className="relative w-[90%] max-w-xl max-h-[85vh] overflow-y-auto rounded-2xl bg-gradient-to-br from-[#0b0b14] via-[#0f1020] to-[#06060d] border border-purple-500/20 shadow-[0_0_80px_rgba(168,85,247,0.35)] p-8 animate-in fade-in zoom-in duration-300 z-50">
-              <button onClick={() => setOpenContact(false)} className="absolute top-4 right-4 text-cyan-400 hover:text-cyan-200 transition">
+              <button
+                onClick={() => setOpenContact(false)}
+                className="absolute top-4 right-4 text-cyan-400 hover:text-cyan-200 transition"
+              >
                 <X className="w-6 h-6" />
               </button>
 
@@ -277,15 +296,73 @@ export default function App() {
                 <p className="text-gray-400 mt-2">Preencha seus dados e entraremos em contato</p>
               </div>
 
-              <form className="space-y-4">
-                <input type="text" placeholder="Nome da Empresa" className="w-full p-3 rounded-lg bg-gray-900 text-white border border-purple-500/30 focus:outline-none focus:border-cyan-400" />
-                <input type="email" placeholder="Email" className="w-full p-3 rounded-lg bg-gray-900 text-white border border-purple-500/30 focus:outline-none focus:border-cyan-400" />
-                <input type="tel" placeholder="Telefone" className="w-full p-3 rounded-lg bg-gray-900 text-white border border-purple-500/30 focus:outline-none focus:border-cyan-400" />
-                <textarea placeholder="Motivo do Contato" className="w-full p-3 rounded-lg bg-gray-900 text-white border border-purple-500/30 focus:outline-none focus:border-cyan-400" rows={4} />
-                <Button type="submit" className="w-full bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-700 hover:to-fuchsia-700 text-white px-6 py-4 rounded-full transition-all duration-300">
-                  Enviar
-                </Button>
-              </form>
+              {!submitted ? (
+                <form
+                  className="space-y-4"
+                  onSubmit={async (e) => {
+                    e.preventDefault(); // evita reload da página
+                    const form = e.currentTarget;
+                    const data = new FormData(form);
+
+                    try {
+                      const response = await fetch("https://formspree.io/f/xjgovowb", {
+                        method: "POST",
+                        headers: { 'Accept': 'application/json' },
+                        body: data,
+                      });
+
+                      if (response.ok) {
+                        setSubmitted(true); // mostra mensagem de obrigado
+                        setTimeout(() => setOpenContact(false), 3000);
+                        form.reset();       // limpa os campos
+                      } else {
+                        alert("Erro ao enviar a mensagem. Tente novamente.");
+                      }
+                    } catch (error) {
+                      alert("Erro ao enviar a mensagem. Tente novamente.");
+                    }
+                  }}
+                >
+                  <input
+                    type="text"
+                    name="empresa"
+                    placeholder="Nome da Empresa"
+                    required
+                    className="w-full p-3 rounded-lg bg-gray-900 text-white border border-purple-500/30 focus:outline-none focus:border-cyan-400"
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    required
+                    className="w-full p-3 rounded-lg bg-gray-900 text-white border border-purple-500/30 focus:outline-none focus:border-cyan-400"
+                  />
+                  <input
+                    type="tel"
+                    name="telefone"
+                    placeholder="Telefone"
+                    required
+                    className="w-full p-3 rounded-lg bg-gray-900 text-white border border-purple-500/30 focus:outline-none focus:border-cyan-400"
+                  />
+                  <textarea
+                    name="mensagem"
+                    placeholder="Motivo do Contato"
+                    rows={4}
+                    required
+                    className="w-full p-3 rounded-lg bg-gray-900 text-white border border-purple-500/30 focus:outline-none focus:border-cyan-400"
+                  />
+                  <Button
+                    type="submit"
+                    className="w-full bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-700 hover:to-fuchsia-700 text-white px-6 py-4 rounded-full transition-all duration-300"
+                  >
+                    Enviar
+                  </Button>
+                </form>
+              ) : (
+                <div className="text-center text-green-400 font-semibold text-lg">
+                  Obrigado! Sua mensagem foi enviada com sucesso.
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -382,12 +459,12 @@ export default function App() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service) => (
+            {services.map((service, idx) => (
               <Card
                 key={service.id}
                 className="group relative overflow-hidden bg-gradient-to-br from-purple-950/60 to-cyan-950/60 border-purple-500/20 hover:border-purple-500/50 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/30"
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
+                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none`}></div>
 
                 <CardHeader>
                   <div className="flex items-start justify-between mb-4">
@@ -402,16 +479,24 @@ export default function App() {
                     {service.description}
                   </CardDescription>
                 </CardHeader>
+
                 <CardContent>
                   <div className="space-y-2 mb-4">
-                    {service.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-sm text-gray-300">
+                    {service.features.map((feature, fidx) => (
+                      <div key={fidx} className="flex items-center gap-2 text-sm text-gray-300">
                         <CheckCircle className="w-4 h-4 text-green-400" />
                         <span>{feature}</span>
                       </div>
                     ))}
                   </div>
-                  <Button className={`w-full bg-gradient-to-r ${service.color} hover:shadow-lg transition-all duration-300 text-white font-bold`}>
+
+                  <Button
+                    className={`w-full bg-gradient-to-r ${service.color} hover:shadow-lg transition-all duration-300 text-white font-bold`}
+                    onClick={() => {
+                      setSelectedService(service);
+                      setOpenServiceModal(true);
+                    }}
+                  >
                     Saiba Mais
                     <ChevronRight className="w-4 h-4 ml-2" />
                   </Button>
@@ -420,6 +505,59 @@ export default function App() {
             ))}
           </div>
         </div>
+
+        {/* Modal Detalhe do Serviço */}
+        {openServiceModal && selectedService && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto">
+            <div
+              className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+              onClick={() => setOpenServiceModal(false)}
+            />
+            <div className="relative w-[90%] max-w-2xl max-h-[85vh] overflow-y-auto rounded-2xl bg-gradient-to-br from-[#0b0b14] via-[#0f1020] to-[#06060d] border border-purple-500/20 shadow-[0_0_80px_rgba(168,85,247,0.35)] p-8 animate-in fade-in zoom-in duration-300 z-50">
+              <button
+                onClick={() => setOpenServiceModal(false)}
+                className="absolute top-4 right-4 text-cyan-400 hover:text-cyan-200 transition"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              <div className="text-center mb-6">
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                  {selectedService.title}
+                </h2>
+                <p className="text-gray-400 mt-2">{selectedService.description}</p>
+              </div>
+
+              <div className="mb-4 space-y-2">
+                {selectedService.features.map((feature, fidx) => (
+                  <div key={fidx} className="flex items-center gap-2 text-sm text-gray-300">
+                    <CheckCircle className="w-4 h-4 text-green-400" />
+                    <span>{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Se tiver imagem do serviço */}
+              {selectedService.image && (
+                <img
+                  src={selectedService.image}
+                  alt={selectedService.title}
+                  className="w-full rounded-lg my-4 shadow-lg"
+                />
+              )}
+              <Button
+                className={`w-full bg-gradient-to-r ${selectedService.color} hover:shadow-lg transition-all duration-300 text-white font-bold`}
+                onClick={() => {
+                  setOpenServiceModal(false);
+                  setOpenContact(true);
+                }}
+              >
+                Entrar em Contato
+                <ChevronRight className="w-4 h-4 ml-2" />
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Testimonials Section */}

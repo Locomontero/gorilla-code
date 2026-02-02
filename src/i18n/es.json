@@ -1,0 +1,172 @@
+{
+    "hero": {
+        "badge": "EXCELENCIA EN INGENIERÍA DE SOFTWARE",
+        "title": "Transforma Tu Negocio con Soluciones Tecnológicas de Vanguardia.",
+        "cta": {
+            "primary": "Iniciar Proyecto",
+            "secondary": "Ver Portafolio"
+        }
+    },
+    "contact": {
+        "title": "Contáctanos",
+        "subtitle": "Completa tus datos y nos pondremos en contacto",
+        "success": "¡Gracias! Tu mensaje ha sido enviado exitosamente.",
+        "form": {
+            "company": "Empresa",
+            "email": "Correo Electrónico",
+            "phone": "Teléfono",
+            "message": "Mensaje",
+            "submit": "Enviar"
+        }
+    },
+    "portfolio": {
+        "title": "Portafolio",
+        "subtitle": "Proyectos reales. Diseño, rendimiento e impacto",
+        "projects": {
+            "appGames": {
+                "title": "App de Juegos en Línea",
+                "description": "Página de aterrizaje moderna con diseño responsivo e interactivo"
+            },
+            "appFinance": {
+                "title": "App Financiera",
+                "description": "Aplicación financiera con panel de control interactivo"
+            },
+            "appAdult": {
+                "title": "App de Contenido +18",
+                "description": "Plataforma de comercio electrónico con proceso de pago optimizado"
+            },
+            "appFX": {
+                "title": "App de Cambio FX",
+                "description": "Sistema completo de reservas en línea"
+            },
+            "appAccounting": {
+                "title": "App de Contabilidad",
+                "description": "Panel de análisis de datos en tiempo real"
+            },
+            "appNFT": {
+                "title": "App NFT Blockchain",
+                "description": "Plataforma NFT con funciones interactivas"
+            }
+        }
+    },
+    "clients": {
+        "badge": "Clientes que Confían",
+        "title": "Empresas Clientes a las que Brindamos Servicios",
+        "subtitle": "Algunas de las empresas que confían en nosotros y usan nuestros servicios"
+    },
+    "services": {
+        "badge": "Nuestros Servicios",
+        "title": "Soluciones Completas",
+        "subtitle": "Desde la planificación hasta la entrega, gestionamos toda la infraestructura tecnológica de tu negocio",
+        "description": "Desde la planificación hasta la entrega, gestionamos toda la infraestructura tecnológica de tu negocio, ofreciendo soluciones completas para que tu negocio crezca con seguridad y rendimiento.",
+        "button": "Saber Más",
+        "contactButton": "Contáctanos",
+        "banking": {
+            "title": "Plataformas Bancarias",
+            "description": "Sistemas financieros robustos, seguros y escalables con total cumplimiento",
+            "features": {
+                "core": "Core Banking",
+                "payments": "Procesamiento de Pagos",
+                "antifraud": "Sistemas Anti-Fraude",
+                "compliance": "Cumplimiento Regulatorio"
+            }
+        },
+        "ecommerce": {
+            "title": "E-commerce & Shopify",
+            "description": "Tiendas online de alto rendimiento con integraciones completas",
+            "features": {
+                "shopify": "Shopify Plus",
+                "custom": "Personalización Avanzada",
+                "integrations": "Integraciones",
+                "seo": "SEO Optimizado"
+            }
+        },
+        "accounting": {
+            "title": "Sistemas Contables",
+            "description": "Automatización contable y fiscal con precisión y conformidad",
+            "features": {
+                "erp": "ERP Integrado",
+                "taxes": "Gestión Fiscal",
+                "reports": "Informes Financieros",
+                "dashboard": "Paneles Inteligentes"
+            }
+        },
+        "cloud": {
+            "title": "Cloud & DevOps",
+            "description": "Hospedaje en la nube con alta disponibilidad y seguridad",
+            "features": {
+                "aws": "AWS y Azure",
+                "cicd": "CI/CD Automatizado",
+                "monitoring": "Monitoreo Continuo",
+                "autoscaling": "Escalabilidad Automática"
+            }
+        },
+        "custom": {
+            "title": "Aplicaciones Personalizadas",
+            "description": "Desarrollo a medida para cualquier necesidad de tu negocio",
+            "features": {
+                "web": "Aplicaciones Web",
+                "mobile": "Aplicaciones Móviles",
+                "apis": "APIs",
+                "microservices": "Microservicios"
+            }
+        },
+        "maintenance": {
+            "title": "Mantenimiento & Soporte",
+            "description": "Gestión continua y evolución de tus aplicaciones",
+            "features": {
+                "support": "Soporte 24/7",
+                "updates": "Actualizaciones",
+                "backup": "Copias de Seguridad",
+                "security": "Seguridad"
+            }
+        }
+    },
+    "testimonials": {
+        "badge": "Reseñas",
+        "title": "Clientes Satisfechos",
+        "description": "Mira lo que nuestros clientes dicen sobre nuestro trabajo",
+        "carlosSilva": {
+            "name": "Carlos Silva",
+            "company": "Director de TI - Banco Regional",
+            "text": "La plataforma bancaria desarrollada superó todas las expectativas. Seguridad impecable y excelente rendimiento."
+        },
+        "anaPaula": {
+            "name": "Ana Paula Santos",
+            "company": "CEO - E-commerce de Moda",
+            "text": "Nuestra tienda Shopify creció un 300% tras la personalización. ¡Equipo extremadamente competente!"
+        },
+        "ricardoOliveira": {
+            "name": "Ricardo Oliveira",
+            "company": "CFO - Industria Automotriz",
+            "text": "El sistema contable revolucionó nuestro proceso fiscal. Reducimos errores en un 98%. ¡Altamente recomendado!"
+        }
+    },
+    "stats": {
+        "projectsDelivered": "Proyectos Entregados",
+        "clientsSatisfied": "Clientes Satisfechos",
+        "uptime": "Tiempo de Actividad Garantizado",
+        "yearsExperience": "Años de Experiencia"
+    },
+    "achievements": {
+        "cleanCode": "Código Limpio & Mejores Prácticas",
+        "securityCertifications": "Certificaciones de Seguridad",
+        "cloudNative": "Arquitectura Cloud Native",
+        "scalability": "Escalabilidad Garantizada"
+    },
+    "whyChooseUs": {
+        "title": "¿Por Qué Elegir Nuestros Servicios?"
+    },
+    "cta": {
+        "title": "¿Listo para Escalar Tu Negocio?",
+        "description": "Hablemos sobre cómo podemos convertir tus ideas en realidad digital",
+        "buttonText": "¿Vamos a Programar?",
+        "stats": "150+ Proyectos | 170+ Clientes Satisfechos | 95.5% Tiempo de Actividad | 15+ Años de Experiencia"
+    },
+    "footer": {
+        "name": "Patrick Monteiro",
+        "role": "Ingeniero de Software",
+        "specialty": "Especialista en Plataformas Bancarias, E-commerce y Arquitectura en la Nube",
+        "copyright": "© 2026 Patrick Monteiro - Ingeniería de Software. Todos los derechos reservados."
+    }
+}

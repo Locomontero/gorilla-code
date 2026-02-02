@@ -1,0 +1,172 @@
+{
+    "hero": {
+        "badge": "EXCELLENCE IN SOFTWARE ENGINEERING",
+        "title": "Transform Your Business with Cutting-Edge Technology Solutions.",
+        "cta": {
+            "primary": "Start Project",
+            "secondary": "View Portfolio"
+        }
+    },
+    "contact": {
+        "title": "Contact Us",
+        "subtitle": "Fill in your details and we will get in touch",
+        "success": "Thank you! Your message has been sent successfully.",
+        "form": {
+            "company": "Company",
+            "email": "Email",
+            "phone": "Phone",
+            "message": "Message",
+            "submit": "Send"
+        }
+    },
+    "portfolio": {
+        "title": "Portfolio",
+        "subtitle": "Real projects. Design, performance, and impact",
+        "projects": {
+            "appGames": {
+                "title": "Online Gaming App",
+                "description": "Modern landing page with responsive and interactive design"
+            },
+            "appFinance": {
+                "title": "Finance App",
+                "description": "Financial application with interactive dashboard"
+            },
+            "appAdult": {
+                "title": "Adult Content App",
+                "description": "E-commerce platform with optimized checkout"
+            },
+            "appFX": {
+                "title": "FX Exchange App",
+                "description": "Complete online booking system"
+            },
+            "appAccounting": {
+                "title": "Accounting App",
+                "description": "Real-time data analysis dashboard"
+            },
+            "appNFT": {
+                "title": "NFT Blockchain App",
+                "description": "NFT platform with interactive features"
+            }
+        }
+    },
+    "clients": {
+        "badge": "Trusted Clients",
+        "title": "Client Companies We Serve",
+        "subtitle": "Some of the companies that trust us and use our services"
+    },
+    "services": {
+        "badge": "Our Services",
+        "title": "Complete Solutions",
+        "subtitle": "From planning to delivery, we manage all your business technology infrastructure",
+        "description": "From planning to delivery, we manage all your business technology infrastructure, offering complete solutions to help your business grow safely and efficiently.",
+        "button": "Learn More",
+        "contactButton": "Contact Us",
+        "banking": {
+            "title": "Banking Platforms",
+            "description": "Robust, secure, and scalable financial systems with full compliance",
+            "features": {
+                "core": "Core Banking",
+                "payments": "Payment Processing",
+                "antifraud": "Anti-Fraud Systems",
+                "compliance": "Regulatory Compliance"
+            }
+        },
+        "ecommerce": {
+            "title": "E-commerce & Shopify",
+            "description": "High-performance online stores with complete integrations",
+            "features": {
+                "shopify": "Shopify Plus",
+                "custom": "Advanced Customization",
+                "integrations": "Integrations",
+                "seo": "SEO Optimized"
+            }
+        },
+        "accounting": {
+            "title": "Accounting Systems",
+            "description": "Accounting and tax automation with precision and compliance",
+            "features": {
+                "erp": "Integrated ERP",
+                "taxes": "Tax Management",
+                "reports": "Financial Reports",
+                "dashboard": "Smart Dashboards"
+            }
+        },
+        "cloud": {
+            "title": "Cloud & DevOps",
+            "description": "Cloud hosting with high availability and security",
+            "features": {
+                "aws": "AWS and Azure",
+                "cicd": "Automated CI/CD",
+                "monitoring": "Continuous Monitoring",
+                "autoscaling": "Automatic Scaling"
+            }
+        },
+        "custom": {
+            "title": "Custom Applications",
+            "description": "Tailored development for any business need",
+            "features": {
+                "web": "Web Applications",
+                "mobile": "Mobile Applications",
+                "apis": "APIs",
+                "microservices": "Microservices"
+            }
+        },
+        "maintenance": {
+            "title": "Maintenance & Support",
+            "description": "Continuous management and evolution of your applications",
+            "features": {
+                "support": "24/7 Support",
+                "updates": "Updates",
+                "backup": "Backup",
+                "security": "Security"
+            }
+        }
+    },
+    "testimonials": {
+        "badge": "Reviews",
+        "title": "Satisfied Clients",
+        "description": "See what our clients say about our work",
+        "carlosSilva": {
+            "name": "Carlos Silva",
+            "company": "IT Director - Regional Bank",
+            "text": "The banking platform exceeded all expectations. Impeccable security and excellent performance."
+        },
+        "anaPaula": {
+            "name": "Ana Paula Santos",
+            "company": "CEO - Fashion E-commerce",
+            "text": "Our Shopify store grew 300% after customization. Extremely competent team!"
+        },
+        "ricardoOliveira": {
+            "name": "Ricardo Oliveira",
+            "company": "CFO - Automotive Industry",
+            "text": "The accounting system revolutionized our tax process. Errors reduced by 98%. Highly recommended!"
+        }
+    },
+    "stats": {
+        "projectsDelivered": "Projects Delivered",
+        "clientsSatisfied": "Satisfied Clients",
+        "uptime": "Guaranteed Uptime",
+        "yearsExperience": "Years of Experience"
+    },
+    "achievements": {
+        "cleanCode": "Clean Code & Best Practices",
+        "securityCertifications": "Security Certifications",
+        "cloudNative": "Cloud Native Architecture",
+        "scalability": "Guaranteed Scalability"
+    },
+    "whyChooseUs": {
+        "title": "Why Choose Our Services?"
+    },
+    "cta": {
+        "title": "Ready to Scale Your Business?",
+        "description": "Let's talk about how we can turn your ideas into digital reality",
+        "buttonText": "Let's Code?",
+        "stats": "150+ Projects | 170+ Satisfied Clients | 95.5% Uptime | 15+ Years of Experience"
+    },
+    "footer": {
+        "name": "Patrick Monteiro",
+        "role": "Software Engineer",
+        "specialty": "Specialist in Banking Platforms, E-commerce, and Cloud Architecture",
+        "copyright": "© 2026 Patrick Monteiro - Software Engineering. All rights reserved."
+    }
+}

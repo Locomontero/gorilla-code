@@ -7,6 +7,11 @@ import {
   Star, CheckCircle, Users, Rocket, Server, ShoppingCart,
   Calculator, FileCode, Award, TrendingUp, X
 } from "lucide-react";
+
+import { useTranslation } from "react-i18next";
+import "../i18n";
+import LanguageSwitcher from "./components/LanguageSwitcher";
+
 import gorillaBackground from "../assets/gorilla.png";
 import gorillaCode from "../assets/Gorilla-CODE.png";
 import hackerMask from "../assets/anonymous.png";
@@ -18,6 +23,13 @@ import digitalcala from "../assets/logos/digitalcala.png";
 import embraer from "../assets/logos/embraer.png";
 import metlife from "../assets/logos/metlife.png";
 import aci from "../assets/logos/aci.jpg";
+
+import casino from "../app/images/casino.png";
+import cambioFX from "../app/images/cambioFX.png";
+import velvet from "../app/images/velvet.png";
+import techFX from "../app/images/techFX.png";
+import excelencia from "../app/images/excelencia.png";
+import nft from "../app/images/nft.png";
 
 
 export const clients = [
@@ -33,15 +45,16 @@ export const clients = [
 
 interface Service {
   id: number;
-  title: string;
-  description: string;
+  titleKey: string;
+  descriptionKey: string;
+  featuresKeys: string[];
   icon: React.ReactNode;
   color: string;
-  features: string[];
   image?: string;
 }
 
 export default function App() {
+  const { t } = useTranslation();
 
   const [openPortfolio, setOpenPortfolio] = useState(false)
   const [openContact, setOpenContact] = useState(false);
@@ -54,128 +67,174 @@ export default function App() {
   const services: Service[] = [
     {
       id: 1,
-      title: "Plataformas Bancárias",
-      description: "Sistemas financeiros robustos, seguros e escaláveis com compliance total",
+      titleKey: "services.banking.title",
+      descriptionKey: "services.banking.description",
+      featuresKeys: [
+        "services.banking.features.core",
+        "services.banking.features.payments",
+        "services.banking.features.antifraud",
+        "services.banking.features.compliance"
+      ],
       icon: <Shield className="w-6 h-6" />,
-      color: "from-purple-500 to-pink-500",
-      features: ["Core Banking", "Payment Processing", "Anti-Fraude", "Compliance"]
+      color: "from-purple-500 to-pink-500"
     },
     {
       id: 2,
-      title: "E-commerce & Shopify",
-      description: "Lojas online de alto desempenho com integrações completas",
+      titleKey: "services.ecommerce.title",
+      descriptionKey: "services.ecommerce.description",
+      featuresKeys: [
+        "services.ecommerce.features.shopify",
+        "services.ecommerce.features.custom",
+        "services.ecommerce.features.integrations",
+        "services.ecommerce.features.seo"
+      ],
       icon: <ShoppingCart className="w-6 h-6" />,
-      color: "from-cyan-500 to-blue-500",
-      features: ["Shopify Plus", "Customização", "Integrações", "SEO"]
+      color: "from-cyan-500 to-blue-500"
     },
     {
       id: 3,
-      title: "Sistemas de Contabilidade",
-      description: "Automação contábil e fiscal com precisão e conformidade",
+      titleKey: "services.accounting.title",
+      descriptionKey: "services.accounting.description",
+      featuresKeys: [
+        "services.accounting.features.erp",
+        "services.accounting.features.taxes",
+        "services.accounting.features.reports",
+        "services.accounting.features.dashboard"
+      ],
       icon: <Calculator className="w-6 h-6" />,
-      color: "from-green-500 to-emerald-500",
-      features: ["ERP", "Fiscal", "Relatórios", "Dashboard"]
+      color: "from-cyan-500 to-green-500"
     },
     {
       id: 4,
-      title: "Cloud & DevOps",
-      description: "Hospedagem em nuvem com alta disponibilidade e segurança",
+      titleKey: "services.cloud.title",
+      descriptionKey: "services.cloud.description",
+      featuresKeys: [
+        "services.cloud.features.aws",
+        "services.cloud.features.cicd",
+        "services.cloud.features.monitoring",
+        "services.cloud.features.autoscaling"
+      ],
       icon: <Cloud className="w-6 h-6" />,
-      color: "from-orange-500 to-red-500",
-      features: ["AWS/Azure", "CI/CD", "Monitoramento", "Auto-scaling"]
+      color: "from-orange-500 to-red-500"
     },
     {
       id: 5,
-      title: "Aplicações Customizadas",
-      description: "Desenvolvimento sob medida para qualquer necessidade do seu negócio",
+      titleKey: "services.custom.title",
+      descriptionKey: "services.custom.description",
+      featuresKeys: [
+        "services.custom.features.web",
+        "services.custom.features.mobile",
+        "services.custom.features.apis",
+        "services.custom.features.microservices"
+      ],
       icon: <FileCode className="w-6 h-6" />,
-      color: "from-violet-500 to-purple-500",
-      features: ["Web Apps", "Mobile", "APIs", "Microserviços"]
+      color: "from-violet-500 to-purple-500"
     },
     {
       id: 6,
-      title: "Manutenção & Suporte",
-      description: "Gerenciamento contínuo e evolução das suas aplicações",
+      titleKey: "services.maintenance.title",
+      descriptionKey: "services.maintenance.description",
+      featuresKeys: [
+        "services.maintenance.features.support",
+        "services.maintenance.features.updates",
+        "services.maintenance.features.backup",
+        "services.maintenance.features.security"
+      ],
       icon: <Server className="w-6 h-6" />,
-      color: "from-fuchsia-500 to-pink-500",
-      features: ["24/7 Support", "Updates", "Backup", "Segurança"]
+      color: "from-violet-500 to-purple-500"
     }
   ];
 
-
   const testimonials = [
     {
-      name: "Carlos Silva",
-      company: "Diretor de TI - Banco Regional",
+      nameKey: "testimonials.carlosSilva.name",
+      companyKey: "testimonials.carlosSilva.company",
       rating: 5,
-      text: "A plataforma bancária desenvolvida superou todas as expectativas. Segurança impecável e performance excelente."
+      textKey: "testimonials.carlosSilva.text"
     },
     {
-      name: "Ana Paula Santos",
-      company: "CEO - E-commerce Fashion",
+      nameKey: "testimonials.anaPaula.name",
+      companyKey: "testimonials.anaPaula.company",
       rating: 5,
-      text: "Nossa loja Shopify teve um crescimento de 300% após a customização. Equipe extremamente competente!"
+      textKey: "testimonials.anaPaula.text"
     },
     {
-      name: "Ricardo Oliveira",
-      company: "CFO - Indústria Automotiva",
+      nameKey: "testimonials.ricardoOliveira.name",
+      companyKey: "testimonials.ricardoOliveira.company",
       rating: 5,
-      text: "Sistema contábil revolucionou nosso processo fiscal. Reduzimos erros em 98%. Altamente recomendado!"
+      textKey: "testimonials.ricardoOliveira.text"
     }
   ];
 
   const stats = [
-    { label: "Projetos Entregues", value: "150+", icon: <Rocket className="w-5 h-5" /> },
-    { label: "Clientes Satisfeitos", value: "170+", icon: <Users className="w-5 h-5" /> },
-    { label: "Uptime Garantido", value: "95.5%", icon: <Shield className="w-5 h-5" /> },
-    { label: "Anos de Experiência", value: "15+", icon: <Award className="w-5 h-5" /> }
+    {
+      labelKey: "stats.projectsDelivered",
+      value: "150+",
+      icon: <Rocket className="w-5 h-5" />
+    },
+    {
+      labelKey: "stats.clientsSatisfied",
+      value: "170+",
+      icon: <Users className="w-5 h-5" />
+    },
+    {
+      labelKey: "stats.uptime",
+      value: "95.5%",
+      icon: <Shield className="w-5 h-5" />
+    },
+    {
+      labelKey: "stats.yearsExperience",
+      value: "15+",
+      icon: <Award className="w-5 h-5" />
+    }
   ];
 
   const achievements = [
-    { icon: <Code2 className="w-5 h-5" />, text: "Clean Code & Best Practices" },
-    { icon: <Shield className="w-5 h-5" />, text: "Certificações de Segurança" },
-    { icon: <Cloud className="w-5 h-5" />, text: "Cloud Native Architecture" },
-    { icon: <TrendingUp className="w-5 h-5" />, text: "Escalabilidade Garantida" }
+    { icon: <Code2 className="w-5 h-5" />, textKey: "achievements.cleanCode" },
+    { icon: <Shield className="w-5 h-5" />, textKey: "achievements.securityCertifications" },
+    { icon: <Cloud className="w-5 h-5" />, textKey: "achievements.cloudNative" },
+    { icon: <TrendingUp className="w-5 h-5" />, textKey: "achievements.scalability" }
   ];
 
   const portfolioProjects = [
     {
       id: 1,
-      title: "App de Jogos Online",
-      description: "Landing page moderna com design responsivo e interativo.",
-      image: "src/app/images/casino.png"
+      titleKey: "portfolio.projects.appGames.title",
+      descriptionKey: "portfolio.projects.appGames.description",
+      image: casino
     },
     {
       id: 2,
-      title: "App Financeiro",
-      description: "Aplicativo de finanças com dashboard interativo.",
-      image: "src/app/images/cambioFX.png"
+      titleKey: "portfolio.projects.appFinance.title",
+      descriptionKey: "portfolio.projects.appFinance.description",
+      image: cambioFX
     },
     {
       id: 3,
-      title: "App de Conteúdo +18",
-      description: "Plataforma de e-commerce com checkout otimizado.",
-      image: "src/app/images/velvet.png"
+      titleKey: "portfolio.projects.appAdult.title",
+      descriptionKey: "portfolio.projects.appAdult.description",
+      image: velvet
     },
     {
       id: 4,
-      title: "App de Cambio FX",
-      description: "Sistema completo de reservas online.",
-      image: "src/app/images/techFX.png"
+      titleKey: "portfolio.projects.appFX.title",
+      descriptionKey: "portfolio.projects.appFX.description",
+      image: techFX
     },
     {
       id: 5,
-      title: "App Contabilidade",
-      description: "Dashboard de análise de dados em tempo real.",
-      image: "src/app/images/excelencia.png"
+      titleKey: "portfolio.projects.appAccounting.title",
+      descriptionKey: "portfolio.projects.appAccounting.description",
+      image: excelencia
     },
     {
       id: 6,
-      title: "App NFT Blockchain",
-      description: "Plataforma NFT com recursos interativos.",
-      image: "src/app/images/nft.png"
-    },
+      titleKey: "portfolio.projects.appNFT.title",
+      descriptionKey: "portfolio.projects.appNFT.description",
+      image: nft
+    }
   ];
+
 
   useEffect(() => {
     document.body.style.overflow = openPortfolio ? 'hidden' : '';
@@ -212,14 +271,19 @@ export default function App() {
             backgroundSize: '50px 50px'
           }}></div>
         </div>
-
         <div className="container mx-auto px-6 relative z-10">
           <div className="flex flex-col items-center text-center max-w-5xl mx-auto">
+
+            {/* Language Switcher */}
+            <div className="flex justify-end mb-4">
+              <LanguageSwitcher />
+            </div>
+
             {/* Badge */}
             <div className="mb-6 inline-flex items-center gap-3 bg-gradient-to-r from-purple-600/20 to-cyan-600/20 backdrop-blur-md border border-purple-500/30 rounded-full px-6 py-3">
               <Zap className="w-5 h-5 text-cyan-400" />
               <span className="text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
-                EXCELÊNCIA EM ENGENHARIA DE SOFTWARE
+                {t("hero.badge")}
               </span>
             </div>
 
@@ -230,9 +294,7 @@ export default function App() {
 
             {/* Headline */}
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-snug text-center mb-8">
-              <span className="text-white">
-                Transforme Seu Negócio com Soluções Tecnológicas de Ponta.
-              </span>
+              <span className="text-white">{t("hero.title")}</span>
             </h2>
 
             {/* Buttons */}
@@ -242,7 +304,7 @@ export default function App() {
                 onClick={() => setOpenContact(true)}
               >
                 <Rocket className="w-5 h-5 mr-2" />
-                Iniciar Projeto
+                {t("hero.cta.primary")}
               </Button>
 
               <Button
@@ -251,9 +313,10 @@ export default function App() {
                 className="group border-2 border-cyan-400/40 text-cyan-300 hover:bg-cyan-500/10 px-8 py-6 text-lg rounded-full backdrop-blur-md transition-all duration-300 shadow-[0_0_20px_rgba(34,211,238,0.15)] hover:shadow-[0_0_30px_rgba(34,211,238,0.35)]"
               >
                 <Database className="w-5 h-5 mr-2 transition-transform group-hover:scale-110 group-hover:rotate-6" />
-                Ver Portfólio
+                {t("hero.cta.secondary")}
               </Button>
             </div>
+
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
               {stats.map((stat, index) => (
@@ -262,7 +325,7 @@ export default function App() {
                     {stat.icon}
                   </div>
                   <div className="text-2xl font-bold text-white">{stat.value}</div>
-                  <div className="text-xs text-gray-400">{stat.label}</div>
+                  <div className="text-xs text-gray-400">{t(stat.labelKey)}</div>
                 </div>
               ))}
             </div>
@@ -291,9 +354,9 @@ export default function App() {
 
               <div className="mb-6 text-center">
                 <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-                  Fale Conosco
+                  {t("contact.title")}
                 </h2>
-                <p className="text-gray-400 mt-2">Preencha seus dados e entraremos em contato</p>
+                <p className="text-gray-400 mt-2">{t("contact.subtitle")}</p>
               </div>
 
               {!submitted ? (
@@ -316,37 +379,37 @@ export default function App() {
                         setTimeout(() => setOpenContact(false), 3000);
                         form.reset();
                       } else {
-                        alert("Erro ao enviar a mensagem. Tente novamente.");
+                        alert(t("contact.error") || "Erro ao enviar a mensagem. Tente novamente.");
                       }
                     } catch (error) {
-                      alert("Erro ao enviar a mensagem. Tente novamente.");
+                      alert(t("contact.error") || "Erro ao enviar a mensagem. Tente novamente.");
                     }
                   }}
                 >
                   <input
                     type="text"
                     name="empresa"
-                    placeholder="Nome da Empresa"
+                    placeholder={t("contact.form.company")}
                     required
                     className="w-full p-3 rounded-lg bg-gray-900 text-white border border-purple-500/30 focus:outline-none focus:border-cyan-400"
                   />
                   <input
                     type="email"
                     name="email"
-                    placeholder="Email"
+                    placeholder={t("contact.form.email")}
                     required
                     className="w-full p-3 rounded-lg bg-gray-900 text-white border border-purple-500/30 focus:outline-none focus:border-cyan-400"
                   />
                   <input
                     type="tel"
                     name="telefone"
-                    placeholder="Telefone"
+                    placeholder={t("contact.form.phone")}
                     required
                     className="w-full p-3 rounded-lg bg-gray-900 text-white border border-purple-500/30 focus:outline-none focus:border-cyan-400"
                   />
                   <textarea
                     name="mensagem"
-                    placeholder="Motivo do Contato"
+                    placeholder={t("contact.form.message")}
                     rows={4}
                     required
                     className="w-full p-3 rounded-lg bg-gray-900 text-white border border-purple-500/30 focus:outline-none focus:border-cyan-400"
@@ -355,12 +418,12 @@ export default function App() {
                     type="submit"
                     className="w-full bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-700 hover:to-fuchsia-700 text-white px-6 py-4 rounded-full transition-all duration-300"
                   >
-                    Enviar
+                    {t("contact.form.submit")}
                   </Button>
                 </form>
               ) : (
                 <div className="text-center text-green-400 font-semibold text-lg">
-                  Obrigado! Sua mensagem foi enviada com sucesso.
+                  {t("contact.success")}
                 </div>
               )}
             </div>
@@ -378,20 +441,20 @@ export default function App() {
 
               <div className="mb-10 text-center">
                 <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-                  Portfólio
+                  {t("portfolio.title")}
                 </h2>
                 <p className="text-gray-400 mt-3">
-                  Projetos reais. Design, performance e impacto.
+                  {t("portfolio.subtitle")}
                 </p>
               </div>
 
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {portfolioProjects.map((item) => (
                   <div key={item.id} className="group rounded-xl border border-cyan-500/10 bg-white/5 overflow-hidden p-0 hover:border-cyan-400/40 transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.2)]">
-                    <img src={item.image} alt={item.title} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+                    <img src={item.image} alt={t(item.titleKey)} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
                     <div className="p-4">
-                      <h3 className="text-lg font-semibold text-white group-hover:text-cyan-300 transition">{item.title}</h3>
-                      <p className="text-sm text-gray-400 mt-1">{item.description}</p>
+                      <h3 className="text-lg font-semibold text-white group-hover:text-cyan-300 transition">{t(item.titleKey)}</h3>
+                      <p className="text-sm text-gray-400 mt-1">{t(item.descriptionKey)}</p>
                     </div>
                   </div>
                 ))}
@@ -399,34 +462,26 @@ export default function App() {
             </div>
           </div>
         )}
-      </div> {/* fim Hero Section */}
-
+      </div>
       {/* Clients Section */}
       <div className="relative py-16 bg-gradient-to-b from-[#0a0a0f] to-[#1a0a1f]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-8">
             <Badge className="mb-4 bg-purple-500/20 text-purple-400 border-purple-500/30 px-4 py-2">
               <Award className="w-4 h-4 mr-2" />
-              Clientes que Confiam
+              {t("clients.title")}
             </Badge>
             <h2 className="text-3xl md:text-4xl font-black mb-4">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
-                Empresas Clientes que Prestamos Serviços
+                {t("clients.subtitle")}
               </span>
             </h2>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
             {clients.map((client, index) => (
-              <div
-                key={index}
-                className="bg-gray-900 rounded-lg p-4 flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-lg hover:bg-white/10"
-              >
-                <img
-                  src={client.logo}
-                  alt={client.name}
-                  className="w-full h-20 object-contain filter grayscale opacity-50 transition-all duration-300 hover:grayscale-0 hover:opacity-100"
-                />
+              <div key={index} className="bg-gray-900 rounded-lg p-4 flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-lg hover:bg-white/10">
+                <img src={client.logo} alt={client.name} className="w-full h-20 object-contain filter grayscale opacity-50 transition-all duration-300 hover:grayscale-0 hover:opacity-100" />
               </div>
             ))}
           </div>
@@ -446,23 +501,25 @@ export default function App() {
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 via-transparent to-cyan-900/10 pointer-events-none"></div>
 
         <div className="container mx-auto px-6 relative z-10">
+          {/* Header */}
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-purple-500/20 text-purple-400 border-purple-500/30 px-4 py-2">
               <Code2 className="w-4 h-4 mr-2" />
-              Nossos Serviços
+              {t("services.title")} {/* tradução do título da seção */}
             </Badge>
             <h2 className="text-5xl md:text-6xl font-black mb-6">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
-                Soluções Completas
+                {t("services.subtitle")} {/* tradução do subtítulo */}
               </span>
             </h2>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Do planejamento à entrega, cuidamos de toda infraestrutura tecnológica do seu negócio
+              {t("services.description")} {/* descrição da seção */}
             </p>
           </div>
 
+          {/* Cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, idx) => (
+            {services.map((service) => (
               <Card
                 key={service.id}
                 className="group relative overflow-hidden bg-gradient-to-br from-purple-950/60 to-cyan-950/60 border-purple-500/20 hover:border-purple-500/50 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/30"
@@ -476,19 +533,19 @@ export default function App() {
                     </div>
                   </div>
                   <CardTitle className="text-2xl text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-cyan-400 transition-all duration-300">
-                    {service.title}
+                    {t(service.titleKey)} {/* tradução do título do serviço */}
                   </CardTitle>
                   <CardDescription className="text-gray-400">
-                    {service.description}
+                    {t(service.descriptionKey)} {/* tradução da descrição */}
                   </CardDescription>
                 </CardHeader>
 
                 <CardContent>
                   <div className="space-y-2 mb-4">
-                    {service.features.map((feature, fidx) => (
-                      <div key={fidx} className="flex items-center gap-2 text-sm text-gray-300">
+                    {service.featuresKeys.map((featureKey, idx) => (
+                      <div key={idx} className="flex items-center gap-2 text-sm text-gray-300">
                         <CheckCircle className="w-4 h-4 text-green-400" />
-                        <span>{feature}</span>
+                        <span>{t(featureKey)}</span> {/* tradução da feature */}
                       </div>
                     ))}
                   </div>
@@ -500,7 +557,7 @@ export default function App() {
                       setOpenServiceModal(true);
                     }}
                   >
-                    Saiba Mais
+                    {t("services.button")} {/* tradução do botão */}
                     <ChevronRight className="w-4 h-4 ml-2" />
                   </Button>
                 </CardContent>
@@ -524,30 +581,34 @@ export default function App() {
                 <X className="w-6 h-6" />
               </button>
 
+              {/* Header do Serviço */}
               <div className="text-center mb-6">
                 <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-                  {selectedService.title}
+                  {t(selectedService.titleKey)} {/* título traduzido */}
                 </h2>
-                <p className="text-gray-400 mt-2">{selectedService.description}</p>
+                <p className="text-gray-400 mt-2">{t(selectedService.descriptionKey)}</p> {/* descrição traduzida */}
               </div>
 
+              {/* Features */}
               <div className="mb-4 space-y-2">
-                {selectedService.features.map((feature, fidx) => (
+                {selectedService.featuresKeys.map((featureKey, fidx) => (
                   <div key={fidx} className="flex items-center gap-2 text-sm text-gray-300">
                     <CheckCircle className="w-4 h-4 text-green-400" />
-                    <span>{feature}</span>
+                    <span>{t(featureKey)}</span> {/* features traduzidas */}
                   </div>
                 ))}
               </div>
 
-              {/* Se tiver imagem do serviço */}
+              {/* Imagem do Serviço */}
               {selectedService.image && (
                 <img
                   src={selectedService.image}
-                  alt={selectedService.title}
+                  alt={t(selectedService.titleKey)}
                   className="w-full rounded-lg my-4 shadow-lg"
                 />
               )}
+
+              {/* Botão Entrar em Contato */}
               <Button
                 className={`w-full bg-gradient-to-r ${selectedService.color} hover:shadow-lg transition-all duration-300 text-white font-bold`}
                 onClick={() => {
@@ -555,7 +616,7 @@ export default function App() {
                   setOpenContact(true);
                 }}
               >
-                Entrar em Contato
+                {t("services.contactButton")} {/* texto do botão traduzido */}
                 <ChevronRight className="w-4 h-4 ml-2" />
               </Button>
             </div>
@@ -569,32 +630,38 @@ export default function App() {
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-purple-500/20 text-purple-400 border-purple-500/30 px-4 py-2">
               <Star className="w-4 h-4 mr-2" />
-              Avaliações
+              {t("testimonials.badge")}
             </Badge>
             <h2 className="text-5xl md:text-6xl font-black mb-6">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
-                Clientes Satisfeitos
+                {t("testimonials.title")}
               </span>
             </h2>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Veja o que nossos clientes dizem sobre nosso trabalho
+              {t("testimonials.description")}
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="bg-gradient-to-br from-purple-950/50 to-cyan-950/50 border-purple-500/20 backdrop-blur-sm">
+              <Card
+                key={index}
+                className="bg-gradient-to-br from-purple-950/50 to-cyan-950/50 border-purple-500/20 backdrop-blur-sm"
+              >
                 <CardHeader>
+                  {/* Rating */}
                   <div className="flex gap-1 mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                     ))}
                   </div>
-                  <p className="text-gray-300 italic">"{testimonial.text}"</p>
+                  {/* Texto do Testemunho */}
+                  <p className="text-gray-300 italic">"{t(testimonial.textKey)}"</p>
                 </CardHeader>
                 <CardContent>
-                  <p className="font-bold text-white">{testimonial.name}</p>
-                  <p className="text-sm text-gray-400">{testimonial.company}</p>
+                  {/* Nome e Empresa */}
+                  <p className="font-bold text-white">{t(testimonial.nameKey)}</p>
+                  <p className="text-sm text-gray-400">{t(testimonial.companyKey)}</p>
                 </CardContent>
               </Card>
             ))}
@@ -608,7 +675,7 @@ export default function App() {
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-black mb-6">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
-                Por Que Escolher Nossos Serviços?
+                {t("whyChooseUs.title")}
               </span>
             </h2>
           </div>
@@ -622,7 +689,7 @@ export default function App() {
                 <div className="inline-flex p-4 rounded-full bg-gradient-to-br from-purple-600 to-cyan-600 mb-4">
                   {achievement.icon}
                 </div>
-                <p className="text-white font-medium">{achievement.text}</p>
+                <p className="text-white font-medium">{t(achievement.textKey)}</p>
               </div>
             ))}
           </div>
@@ -634,11 +701,11 @@ export default function App() {
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-5xl md:text-6xl font-black mb-6">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-fuchsia-400 to-cyan-400">
-              Pronto para Escalar Seu Negócio?
+              {t("cta.title")}
             </span>
           </h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Vamos conversar sobre como podemos transformar suas ideias em realidade digital
+            {t("cta.description")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
@@ -649,11 +716,11 @@ export default function App() {
               )}
             >
               <Rocket className="w-6 h-6 mr-2" />
-              Vamos Codar?
+              {t("cta.buttonText")}
             </Button>
           </div>
           <p className="mt-6 text-gray-400 text-sm">
-            +170 clientes satisfeitos | Mais de 150 projetos entregues
+            {t("cta.stats")}
           </p>
         </div>
       </div>
@@ -663,17 +730,13 @@ export default function App() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-6">
             <h3 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 mb-2">
-              Patrick Monteiro
+              {t("footer.name")}
             </h3>
-            <p className="text-gray-400 mb-4">Engenheiro de Software</p>
-            <p className="text-sm text-gray-500">
-              Especialista em Plataformas Bancárias, E-commerce e Cloud Architecture
-            </p>
+            <p className="text-gray-400 mb-4">{t("footer.role")}</p>
+            <p className="text-sm text-gray-500">{t("footer.specialty")}</p>
           </div>
           <div className="text-center pt-6 border-t border-purple-500/10">
-            <p className="text-sm text-gray-500">
-              © 2026 Patrick Monteiro - Engenharia de Software. Todos os direitos reservados.
-            </p>
+            <p className="text-sm text-gray-500">{t("footer.copyright")}</p>
           </div>
         </div>
       </footer>

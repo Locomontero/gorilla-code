@@ -9,12 +9,21 @@
     },
     "contact": {
         "title": "Contáctanos",
-        "subtitle": "Completa tus datos y nos pondremos en contacto",
-        "success": "¡Gracias! Tu mensaje ha sido enviado exitosamente.",
+        "subtitle": "Complete sus datos y nos pondremos en contacto",
+        "success": "¡Gracias! Su mensaje ha sido enviado con éxito.",
+        "error": "Error al enviar el mensaje. Por favor, inténtelo de nuevo.",
+        "validation": {
+            "required": "Por favor, complete todos los campos.",
+            "company": "El nombre de la empresa debe tener entre 3 y 60 caracteres.",
+            "email": "Por favor, introduzca un correo electrónico válido que contenga '@'.",
+            "phone": "Por favor, introduzca un número de teléfono válido con DDI y DDD, solo números.",
+            "message": "El mensaje es obligatorio y debe tener como máximo 250 caracteres."
+        },
         "form": {
             "company": "Empresa",
-            "email": "Correo Electrónico",
+            "email": "Correo electrónico",
             "phone": "Teléfono",
+            "phoneHelp": "Ingrese el teléfono con DDI y DDD, solo números",
             "message": "Mensaje",
             "submit": "Enviar"
         }
@@ -167,6 +176,6 @@
         "name": "Patrick Monteiro",
         "role": "Ingeniero de Software",
         "specialty": "Especialista en Plataformas Bancarias, E-commerce y Arquitectura en la Nube",
-        "copyright": "© 2026 Patrick Monteiro - Ingeniería de Software. Todos los derechos reservados."
+        "copyright": "© 2026 Gorilla CODE CNPJ 63.454.360/0001-83 - Ingeniería de Software. Todos los derechos reservados."
     }
 }

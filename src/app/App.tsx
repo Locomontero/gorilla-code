@@ -60,6 +60,7 @@ export default function App() {
   const [openContact, setOpenContact] = useState(false);
 
   const [submitted, setSubmitted] = useState(false);
+  const [messageLength, setMessageLength] = useState(0);
 
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [openServiceModal, setOpenServiceModal] = useState(false);
@@ -361,14 +362,44 @@ export default function App() {
 
               {!submitted ? (
                 <form
+                  noValidate
                   className="space-y-4"
                   onSubmit={async (e) => {
                     e.preventDefault();
                     const form = e.currentTarget;
                     const data = new FormData(form);
 
+                    // Pegando valores
+                    const empresa = data.get("empresa")?.toString().trim();
+                    const email = data.get("email")?.toString().trim();
+                    const telefone = data.get("telefone")?.toString().trim();
+                    const mensagem = data.get("mensagem")?.toString().trim();
+
+                    // Validação multilíngue
+                    if (!empresa || empresa.length < 3 || empresa.length > 60) {
+                      alert(t("contact.validation.company"));
+                      return;
+                    }
+
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!email || !emailRegex.test(email)) {
+                      alert(t("contact.validation.email"));
+                      return;
+                    }
+
+                    const phoneRegex = /^\d{10,15}$/;
+                    if (!telefone || !phoneRegex.test(telefone)) {
+                      alert(t("contact.validation.phone"));
+                      return;
+                    }
+
+                    if (!mensagem || mensagem.length > 250) {
+                      alert(t("contact.validation.message"));
+                      return;
+                    }
+
                     try {
-                      const response = await fetch("https://formspree.io/f/xjgovowb", {
+                      const response = await fetch("https://formspree.io/f/mzdvjora", {
                         method: "POST",
                         headers: { 'Accept': 'application/json' },
                         body: data,
@@ -379,41 +410,56 @@ export default function App() {
                         setTimeout(() => setOpenContact(false), 3000);
                         form.reset();
                       } else {
-                        alert(t("contact.error") || "Erro ao enviar a mensagem. Tente novamente.");
+                        alert(t("contact.error"));
                       }
                     } catch (error) {
-                      alert(t("contact.error") || "Erro ao enviar a mensagem. Tente novamente.");
+                      alert(t("contact.error"));
                     }
                   }}
                 >
+                  {/* Empresa / Nome */}
                   <input
                     type="text"
                     name="empresa"
                     placeholder={t("contact.form.company")}
-                    required
                     className="w-full p-3 rounded-lg bg-gray-900 text-white border border-purple-500/30 focus:outline-none focus:border-cyan-400"
                   />
+
+                  {/* Email */}
                   <input
                     type="email"
                     name="email"
                     placeholder={t("contact.form.email")}
-                    required
                     className="w-full p-3 rounded-lg bg-gray-900 text-white border border-purple-500/30 focus:outline-none focus:border-cyan-400"
                   />
+
+                  {/* Telefone (apenas números, DDI+DDD) */}
                   <input
                     type="tel"
                     name="telefone"
-                    placeholder={t("contact.form.phone")}
-                    required
+                    placeholder="+5511999999999"
+                    inputMode="numeric"
+                    title={t("contact.form.phoneHelp")} // mensagem explicativa multilíngue
                     className="w-full p-3 rounded-lg bg-gray-900 text-white border border-purple-500/30 focus:outline-none focus:border-cyan-400"
                   />
-                  <textarea
-                    name="mensagem"
-                    placeholder={t("contact.form.message")}
-                    rows={4}
-                    required
-                    className="w-full p-3 rounded-lg bg-gray-900 text-white border border-purple-500/30 focus:outline-none focus:border-cyan-400"
-                  />
+
+                  {/* Mensagem */}
+                  <div className="relative">
+                    <textarea
+                      name="mensagem"
+                      placeholder={t("contact.form.message")}
+                      rows={4}
+                      maxLength={250}
+                      value={messageLength > 0 ? undefined : ""}
+                      onChange={(e) => setMessageLength(e.target.value.length)}
+                      className="w-full p-3 rounded-lg bg-gray-900 text-white border border-purple-500/30 focus:outline-none focus:border-cyan-400"
+                    />
+                    {/* Contador de caracteres */}
+                    <div className="absolute bottom-1 right-3 text-sm text-gray-400">
+                      {messageLength}/250
+                    </div>
+                  </div>
+
                   <Button
                     type="submit"
                     className="w-full bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-700 hover:to-fuchsia-700 text-white px-6 py-4 rounded-full transition-all duration-300"

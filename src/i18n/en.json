@@ -11,10 +11,19 @@
         "title": "Contact Us",
         "subtitle": "Fill in your details and we will get in touch",
         "success": "Thank you! Your message has been sent successfully.",
+        "error": "Error sending the message. Please try again.",
+        "validation": {
+            "required": "Please fill in all fields.",
+            "company": "Company name must be between 3 and 60 characters.",
+            "email": "Please enter a valid email containing '@'.",
+            "phone": "Please enter a valid phone number with country and area code, numbers only.",
+            "message": "Message is required and must be at most 250 characters."
+        },
         "form": {
             "company": "Company",
             "email": "Email",
             "phone": "Phone",
+            "phoneHelp": "Enter the phone with country and area code, numbers only",
             "message": "Message",
             "submit": "Send"
         }
@@ -167,6 +176,6 @@
         "name": "Patrick Monteiro",
         "role": "Software Engineer",
         "specialty": "Specialist in Banking Platforms, E-commerce, and Cloud Architecture",
-        "copyright": "© 2026 Patrick Monteiro - Software Engineering. All rights reserved."
+        "copyright": "© 2026 Gorilla CODE CNPJ 63.454.360/0001-83 - Software Engineering. All rights reserved."
     }
 }

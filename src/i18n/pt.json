@@ -11,10 +11,19 @@
         "title": "Fale Conosco",
         "subtitle": "Preencha seus dados e entraremos em contato",
         "success": "Obrigado! Sua mensagem foi enviada com sucesso.",
+        "error": "Erro ao enviar a mensagem. Tente novamente.",
+        "validation": {
+            "required": "Por favor, preencha todos os campos.",
+            "company": "O nome da empresa deve ter entre 3 e 60 caracteres.",
+            "email": "Por favor, insira um e-mail válido contendo '@'.",
+            "phone": "Por favor, insira um telefone válido com DDI e DDD, apenas números.",
+            "message": "A mensagem é obrigatória e deve ter no máximo 250 caracteres."
+        },
         "form": {
             "company": "Empresa",
             "email": "E-mail",
             "phone": "Telefone",
+            "phoneHelp": "Informe o telefone com DDI e DDD, apenas números",
             "message": "Mensagem",
             "submit": "Enviar"
         }
@@ -167,6 +176,6 @@
         "name": "Patrick Monteiro",
         "role": "Engenheiro de Software",
         "specialty": "Especialista em Plataformas Bancárias, E-commerce e Cloud Architecture",
-        "copyright": "© 2026 Patrick Monteiro - Engenharia de Software. Todos os direitos reservados."
+        "copyright": "© 2026 Gorilla CODE CNPJ 63.454.360/0001-83 - Engenharia de Software. Todos os direitos reservados."
     }
 }

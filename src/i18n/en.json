@@ -51,13 +51,13 @@
     },
     "clients": {
         "badge": "Trusted Clients",
-        "title": "Client Companies We Serve",
+        "title": "Trusted Clients",
         "subtitle": "Some of the companies that trust us and use our services"
     },
     "services": {
         "badge": "Our Services",
         "title": "Complete Solutions",
-        "subtitle": "From planning to delivery, we manage all your business technology infrastructure",
+        "subtitle": "Complete Solutions",
         "description": "From planning to delivery, we manage all your business technology infrastructure, offering complete solutions to help your business grow safely and efficiently.",
         "button": "Learn More",
         "contactButton": "Contact Us",

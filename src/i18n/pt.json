@@ -51,13 +51,13 @@
     },
     "clients": {
         "badge": "Clientes que Confiam",
-        "title": "Empresas Clientes que Prestamos Serviços",
-        "subtitle": "Alguns dos clientes empresas que confiam e prestamos nossos serviços"
+        "title": "Clientes que Confiam",
+        "subtitle": "Algumas empresas que confiam serviços"
     },
     "services": {
         "badge": "Nossos Serviços",
         "title": "Soluções Completas",
-        "subtitle": "Do planejamento à entrega, cuidamos de toda infraestrutura tecnológica do seu negócio",
+        "subtitle": "Soluções Completas",
         "description": "Do planejamento à entrega, cuidamos de toda infraestrutura tecnológica do seu negócio, oferecendo soluções completas para seu negócio crescer com segurança e performance.",
         "button": "Saiba Mais",
         "contactButton": "Fale Conosco",
